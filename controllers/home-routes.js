@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// redirect to homepage if session exists
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
