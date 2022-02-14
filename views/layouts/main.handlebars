@@ -12,12 +12,26 @@
     <header class="container">
         <nav class="row flex">
             {{#if loggedIn}}
-            <a href="/dashboard">dashboard</a>
-            <button id='home' class="col-5 btn btn-secondary btn-block">Home</button>
-            <button id='dashboard' class="col-2 btn btn-secondary btn-block">Dashboard</button>
-            <button id='logout' class="col-2 btn btn-secondary">Logout</button>
+            <a href="/">
+                <button id='home' class="col-5 btn btn-secondary btn-block">Home</button>
+            </a>
+            <a href="/dashboard">
+                <button id='dashboard' class="col-2 btn btn-secondary btn-block">Dashboard</button>
+            </a>
+            <a href="/logout">
+                <button id='logout' class="col-2 btn btn-secondary">Logout</button>
+            </a>
             {{else}}
-            <a href="/login">login</a>
+            {{!-- if the user is not logged in --}}
+            <a href="/">
+                <button id='home' class="col-5 btn btn-secondary btn-block">Home</button>
+            </a>
+            <a href="/login">
+                <button id='dashboard' class="col-2 btn btn-secondary btn-block">Dashboard</button>
+            </a>
+            <a href="/login">
+                <button id='login' class="col-2 btn btn-secondary">Login</button>
+            </a>
             {{/if}}
         </nav>
         <h1 class="row">

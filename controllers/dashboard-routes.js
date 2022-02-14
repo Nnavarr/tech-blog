@@ -11,7 +11,6 @@ router.get('/', withAuth, (req,res) => {
             'id',
             'title',
             'post_text',
-            'user_id',
             'date_created'
         ]
     })
@@ -19,6 +18,33 @@ router.get('/', withAuth, (req,res) => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
 
         res.render('dashboard', { posts, loggedIn: true });
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    })
+})
+
+// edit posts
+router.get('/edit/:id', withAuth, (req, res) => {
+    Post.findByPk(req.params.id, {
+        attributes: [
+            'id',
+            'title',
+            'post_text',
+            'date_created'
+        ]
+    })
+    .then(dbPostData => {
+        if (dbPostData) {
+            const post = dbPostData.get({ plain: true });
+
+            res.render('edit-post', {
+                post,
+                loggedIn: true
+            });
+        } else {
+            res.status(404).end();
+        }
     })
     .catch(err => {
         res.status(500).json(err);
