@@ -79,8 +79,8 @@ router.post('/', (req, res) => {
         title: req.body.title,
         post_text: req.body.post_text,
         // TODO: update to session user id
-        user_id: req.body.user_id,
-        date_created: req.body.date_created
+        user_id: req.session.user_id,
+        date_created: new Date()
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
