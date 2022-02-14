@@ -12,6 +12,20 @@ router.get('/', withAuth, (req,res) => {
             'title',
             'post_text',
             'date_created'
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'user_id', 'post_id', 'date_created'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
         ]
     })
     .then(dbPostData => {

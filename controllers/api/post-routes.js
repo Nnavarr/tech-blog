@@ -78,7 +78,6 @@ router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
         post_text: req.body.post_text,
-        // TODO: update to session user id
         user_id: req.session.user_id,
         date_created: new Date()
     })

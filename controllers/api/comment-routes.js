@@ -41,9 +41,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Comment.create({
         comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         post_id: req.body.post_id,
-        date_created: req.body.date_created
+        date_created: new Date()
     })
     .then(dbCommentData => res.json(dbCommentData))
     .catch(err => {
@@ -69,6 +69,5 @@ router.delete('/:id', (req, res) => {
         res.status(500).json(err);
     })
 })
-
 
 module.exports = router;
